@@ -1,0 +1,15 @@
+{
+  "name": "videowiki-backuper",
+  "version": "1.0.0",
+  "description": "a script that backsup videowiki databases to s3 ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Hassan Amin ( h.m.amin994@gmail.com )",
+  "license": "ISC",
+  "dependencies": {
+    "async": "^2.6.1",
+    "dotenv": "^6.2.0"
+  }
+}
