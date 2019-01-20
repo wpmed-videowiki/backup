@@ -7,7 +7,7 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "Hassan Amin ( h.m.amin994@gmail.com )",
-  "license": "ISC",
+  "license": "GNU V3",
   "dependencies": {
     "async": "^2.6.1",
     "aws-sdk": "^2.391.0",
