@@ -4,13 +4,16 @@
   "description": "a script that backsup videowiki databases to s3 ",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "./node_modules/pm2/bin/pm2 start index.js --name=videowiki-backups",
+    "stop": "./node_modules/pm2/bin/pm2 stop videowiki-backups && ./node_modules/pm2/bin/pm2 delete videowiki-backups  "
   },
   "author": "Hassan Amin ( h.m.amin994@gmail.com )",
-  "license": "GNU V3",
+  "license": "GPL-3.0-only",
   "dependencies": {
     "async": "^2.6.1",
     "aws-sdk": "^2.391.0",
-    "dotenv": "^6.2.0"
+    "cron": "^1.6.0",
+    "dotenv": "^6.2.0",
+    "pm2": "^3.2.9"
   }
 }

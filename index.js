@@ -1,12 +1,9 @@
 require('dotenv').config({
   path: '.env'
 })
-const {
-  exec
-} = require('child_process');
 const fs = require('fs');
 const path = require('path');
-const async = require('async');
+const { CronJob } = require('cron');
 const utils = require('./utils');
 
 const BACKUP_DIR = './backups';
@@ -25,9 +22,18 @@ langs.forEach(lang => {
   }
 })
 
-// utils.backupDatabases(langs, (err, result) => {
-//   console.log(err, result);
-// });
-// utils.cleanupBucket((err, data) => {
-//   console.log('cleanup ', err, data);
-// })
+const job = new CronJob({
+  cronTime: '00 12 * * *',
+  onTick: function() {
+        
+    utils.backupDatabases(langs, (err, result) => {
+      console.log('backup results', err, result);
+      utils.cleanupBucket((err, data) => {
+        console.log('cleanup results', err, data);
+      })
+    });
+  },
+  timeZone: 'Asia/Kolkata'
+});
+
+job.start();
