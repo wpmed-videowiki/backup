@@ -43,12 +43,14 @@ module.exports = {
         const backupName = `videowiki-${lang}__${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}-${Date.now()}__gzipped_compressed`;
         const outPath = path.resolve(__dirname, BACKUP_DIR, lang, backupName);
         const command = `mongodump --uri ${DATABASE_BASE}-${lang} --gzip --archive=${outPath}`
+        console.log('backing up database ', command);
         exec(command, (err, stdout, stderr) => {
           if (err || !fs.existsSync(outPath)) {
             return cb();
           }
-
+          console.log('backup succesfull, uploading to s3')
           uploadToS3(fs.createReadStream(outPath), `${lang}/${backupName}`, (err, data) => {
+            console.log('Uploaded to s3');
             fs.unlink(outPath, () => {});
             cb();
           })
