@@ -25,15 +25,20 @@ langs.forEach(lang => {
 const job = new CronJob({
   cronTime: '00 12 * * *',
   onTick: function() {
-        
-    utils.backupDatabases(langs, (err, result) => {
-      console.log('backup results', err, result);
-      utils.cleanupBucket((err, data) => {
-        console.log('cleanup results', err, data);
-      })
-    });
+    startBackup();
   },
   timeZone: 'Asia/Kolkata'
 });
 
 job.start();
+
+function startBackup() {
+  utils.backupDatabases(langs, (err, result) => {
+    console.log('backup results', err, result);
+    utils.cleanupBucket((err, data) => {
+      console.log('cleanup results', err, data);
+    })
+  });
+}
+
+// startBackup();
