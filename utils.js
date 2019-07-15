@@ -42,7 +42,7 @@ module.exports = {
         const today = new Date();
         const backupName = `videowiki-${lang}__${today.getMonth() + 1}-${today.getDate()}-${today.getFullYear()}-${Date.now()}__gzipped_compressed`;
         const outPath = path.resolve(__dirname, BACKUP_DIR, lang, backupName);
-        const command = `mongodump --uri ${DATABASE_BASE}-${lang} --gzip --archive=${outPath}`
+        const command = `mongodump --uri ${DATABASE_BASE}-${lang} --archive=${outPath}`
         console.log('backing up database ', command);
         exec(command, (err, stdout, stderr) => {
           if (err || !fs.existsSync(outPath)) {
