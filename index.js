@@ -7,7 +7,7 @@ const { CronJob } = require('cron');
 const utils = require('./utils');
 
 const BACKUP_DIR = './backups';
-const langs = ['en', 'hi', 'es', 'fr', 'ja'];
+const langs = ['en', 'hi', 'es', 'fr', 'ja', 'uk'];
 
 const DATABASE_BASE = process.env.DATABASE_BASE
 
