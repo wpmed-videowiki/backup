@@ -50,7 +50,7 @@ module.exports = {
           }
           console.log('backup succesfull, uploading to s3')
           uploadToS3(fs.createReadStream(outPath), `${lang}/${backupName}`, (err, data) => {
-            console.log('Uploaded to s3');
+            console.log('Uploaded to s3', data);
             fs.unlink(outPath, () => {});
             cb();
           })
